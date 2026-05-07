@@ -14,7 +14,7 @@ Dirty Frag is a case that extends the bug class to which [Dirty Pipe](https://di
 
 For detailed technical information and the timeline, [see here](assets/write-up.md).
 
-Because the embargo has currently been broken, no patch or CVE exists. After consultation with the maintainers on distros@vs.openwall.org and at their request, this Dirty Frag document is being published. For the disclosure timeline, refer to the technical details.
+Because the embargo has currently been broken, no patch or CVE exists. After consultation with the maintainers on linux-distros@vs.openwall.org and at their request, this Dirty Frag document is being published. For the disclosure timeline, refer to the technical details.
 
 # Exploiting
 
