@@ -1656,10 +1656,6 @@ int rxrpc_lpe_main(int argc, char **argv)
  *    nullok) cases uniformly, and works even when the caller is in a
  *    background process group of an ssh-allocated PTY.
  *
- * Build:
- *   gcc -O0 -static -Wall -o dirtyfrag-exp \
- *       dirtyfrag_exp.c su_body.c rxrpc_body.c -lutil
- *
  */
 #define _GNU_SOURCE
 #include <stdio.h>
