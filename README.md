@@ -26,6 +26,14 @@ git clone https://github.com/V4bel/dirtyfrag.git && cd dirtyfrag && gcc -O0 -Wal
 
 This PoC is provided as accurate information following consultation with linux-distros. Do not use it on systems that you are not authorized to test.
 
+> ⚠️ **Important:** After running this exploit, the page cache is contaminated. To clear the polluted page cache and ensure system stability, either run:
+>
+> ```bash
+> echo 3 > /proc/sys/vm/drop_caches
+> ```
+>
+> or reboot the system.
+
 # Affected Versions
 
 The xfrm-ESP Page-Cache Write vulnerability is in scope from cac2661c53f3 (2017-01-17) up to upstream, and the RxRPC Page-Cache Write vulnerability is in scope from 2dc334f1a63a (2023-06) up to upstream.
@@ -45,9 +53,9 @@ This Dirty Frag has been tested on the following distribution versions.
 # Mitigation
 
 
-1. Because the responsible disclosure schedule and the embargo have been broken, no patch exists for any distribution. Use the following command to remove the modules in which the vulnerabilities occur.
-```
-sh -c "printf 'install esp4 /bin/false\ninstall esp6 /bin/false\ninstall rxrpc /bin/false\n' > /etc/modprobe.d/dirtyfrag.conf; rmmod esp4 esp6 rxrpc 2>/dev/null; true"
+1. Because the responsible disclosure schedule and the embargo have been broken, no patch exists for any distribution. Use the following command to remove the modules in which the vulnerabilities occur and clear the page cache.
+```bash
+sh -c "printf 'install esp4 /bin/false\ninstall esp6 /bin/false\ninstall rxrpc /bin/false\n' > /etc/modprobe.d/dirtyfrag.conf; rmmod esp4 esp6 rxrpc 2>/dev/null; echo 3 > /proc/sys/vm/drop_caches; true"
 ```
 
 2. Once each distribution backports a patch, update accordingly.
