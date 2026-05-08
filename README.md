@@ -31,7 +31,9 @@ git clone https://github.com/V4bel/dirtyfrag.git && cd dirtyfrag && gcc -O0 -Wal
 
 This PoC is provided as accurate information following consultation with linux-distros. Do not use it on systems that you are not authorized to test.
 
-**Important:** After running this exploit, the page cache is contaminated. To clear the polluted page cache and ensure system stability, either run:
+## Cleanup
+
+⚠️  **Important:** After running this exploit, the page cache is contaminated. To clear the polluted page cache and ensure system stability, either run:
 
 ```bash
 echo 3 > /proc/sys/vm/drop_caches
