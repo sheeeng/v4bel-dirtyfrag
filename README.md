@@ -26,6 +26,14 @@ git clone https://github.com/V4bel/dirtyfrag.git && cd dirtyfrag && gcc -O0 -Wal
 
 This PoC is provided as accurate information following consultation with linux-distros. Do not use it on systems that you are not authorized to test.
 
+> ⚠️ **Important:** After running this exploit, the page cache is contaminated. To clear the polluted page cache and ensure system stability, either run:
+>
+> ```bash
+> echo 3 > /proc/sys/vm/drop_caches
+> ```
+>
+> or reboot the system.
+
 # Affected Versions
 
 The xfrm-ESP Page-Cache Write vulnerability is in scope from cac2661c53f3 (2017-01-17) up to upstream, and the RxRPC Page-Cache Write vulnerability is in scope from 2dc334f1a63a (2023-06) up to upstream.
