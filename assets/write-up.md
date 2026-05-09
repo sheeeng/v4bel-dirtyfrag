@@ -384,7 +384,7 @@ recvmsg(rxsk_cli, &m, 0)
                 fcrypt_decrypt(page_address(P) + splice_off, ct, K)  // 8 byte STORE: page P[splice_off..+8] = fcrypt_decrypt(C, K)
 ```
 
-Each STORE plants exactly 8 bytes at file offset (`splice_off`). The HMAC/sechdr verification afterward returns `-EPROTO`, but the STORE is already done.
+Each STORE plants exactly 8 bytes at file offset (`splice_off`). The sechdr verification afterward returns `-EPROTO`, but the STORE is already done.
 
 For each of the three positions (off = 4, 6, 8), the exploit runs the following sequence in turn: update K, `add_key`, socket setup, handshake, cksum computation, splice + recvmsg. With last-write-wins, chars 4..15 of `/etc/passwd` line 1 are replaced with the shape `"::0:0:GGGGGG:"`. Finally, when the parent process execs `/usr/bin/su -` along with a PTY, `pam_unix.so nullok` of PAM common-auth accepts the empty passwd field and lets it through without a prompt. su then performs `setresuid(0, 0, 0)` and execs `/bin/bash`, dropping into a root shell. This variant does not use `unshare()`, and `add_key()`, `socket(AF_RXRPC)`, `socket(AF_ALG)` (for cksum computation), `splice()`, and `recvmsg()` are all APIs available to unprivileged users.
 
